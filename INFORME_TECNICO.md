@@ -141,3 +141,10 @@ db.createCollection("productos", {
 
 ---
 ```
+
+## PARTE 2: Fase 2: Implementación y Manipulación
+
+## Parte 1 :
+
+Cree el archivo operaciones.mongodb.
+![operaciones](opereaciones.png)
