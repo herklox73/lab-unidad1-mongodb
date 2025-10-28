@@ -147,4 +147,4 @@ db.createCollection("productos", {
 ## Parte 1 :
 
 Cree el archivo operaciones.mongodb.
-![operaciones](opereaciones.png)
+![operaciones](operaciones.png)
