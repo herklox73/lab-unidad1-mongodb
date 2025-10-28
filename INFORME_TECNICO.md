@@ -72,7 +72,7 @@ para el caso "TechStore"
 
 El siguiente diagrama representa cómo se vería el caso "TechStore" en un modelo relacional tradicional (SQL):
 
-![Modelo Relacional](Diagramas.png)
+![Modelo Relacional](imagenes/Diagramas.png)
 
 > **Nota:** El modelo relacional utiliza tablas relacionadas por claves foráneas, lo cual complica las consultas y actualizaciones cuando los productos tienen diferentes tipos de especificaciones.
 
@@ -160,6 +160,7 @@ diseño de la Fase 1:
 ● Un (1) Smartphone.
 ● Una (1) Laptop.
 ● Un (1) Monitor.
+
 ```json
 // Insertar: productos
 db.productos.insertMany([
@@ -232,3 +233,4 @@ resolucion: "2560x1080",
 ● Consulta 2: Mostrar solo los productos que sean de tipo "Laptop".
 ![laptop](imagenes/laptop.png)
 ![solo laptop](imagenes/laptopdatos.png)
+```
