@@ -1,0 +1,135 @@
+use("techstore");
+db.productos.drop();
+
+db.createCollection("productos", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nombre", "sku", "precio", "stock", "tipo_producto"],
+      properties: {
+        nombre: { bsonType: "string" },
+        sku: { bsonType: "string" },
+        precio: { bsonType: "number" },
+        stock: { bsonType: "number" },
+        tipo_producto: { bsonType: "string", enum: ["Laptop", "Smartphone", "Monitor"] },
+        fecha_creacion: { bsonType: "date" },
+        categoria: {
+          bsonType: "object",
+          required: ["nombre_categoria"],
+          properties: {
+            nombre_categoria: { bsonType: "string" },
+          },
+        },
+        proveedor: {
+          bsonType: "object",
+          required: ["nombre_proveedor"],
+          properties: {
+            nombre_proveedor: { bsonType: "string" },
+            telefono: { bsonType: "string" },
+            email: { bsonType: "string" },
+            direccion: { bsonType: "string" },
+          },
+        },
+        especificaciones: {
+          bsonType: "object",
+          properties: {
+            // Laptop
+            cpu: { bsonType: "string" },
+            ram_gb: { bsonType: "number" },
+            alto_cm: { bsonType: "number" },
+            ancho_cm: { bsonType: "number" },
+            peso_kg: { bsonType: "number" },
+            // Smartphone
+            pantalla: { bsonType: "string" },
+            // Monitor
+            tamaño_pulgadas: { bsonType: "number" },
+            resolucion: { bsonType: "string" },
+          },
+        },
+      },
+    },
+  },
+});
+
+db.productos.insertMany([
+  {
+    nombre: "Laptop Lenovo ThinkPad X1",
+    sku: "LAP-THINKX1",
+    precio: 1200,
+    stock: 8,
+    tipo_producto: "Laptop",
+    fecha_creacion: new Date(),
+    categoria: { nombre_categoria: "Computadoras" },
+    proveedor: {
+      nombre_proveedor: "Tech Supplier S.A.",
+      telefono: "0999999999",
+      email: "ventas@techsupplier.com",
+      direccion: "Av. Central 123, Quito",
+    },
+    especificaciones: {
+      cpu: "Intel Core i7",
+      ram_gb: 16,
+      alto_cm: 2.5,
+      ancho_cm: 35,
+      peso_kg: 1.8,
+    },
+  },
+  {
+    nombre: "Smartphone Galaxy A55",
+    sku: "SM-A55-128GB",
+    precio: 650,
+    stock: 15,
+    tipo_producto: "Smartphone",
+    fecha_creacion: new Date(),
+    categoria: { nombre_categoria: "Celulares" },
+    proveedor: {
+      nombre_proveedor: "MobileCorp",
+      telefono: "0987654321",
+      email: "contacto@mobilecorp.com",
+      direccion: "Av. Las Américas, Guayaquil",
+    },
+    especificaciones: {
+      pantalla: '6.5"',
+      ram_gb: 8,
+    },
+  },
+  {
+    nombre: "Monitor LG UltraWide 29”",
+    sku: "MON-LG29UW",
+    precio: 350,
+    stock: 20,
+    tipo_producto: "Monitor",
+    fecha_creacion: new Date(),
+    categoria: { nombre_categoria: "Monitores" },
+    proveedor: {
+      nombre_proveedor: "Displays Ecuador",
+      telefono: "0977777777",
+      email: "ventas@displays.ec",
+      direccion: "Calle Norte 456, Santo Domingo",
+    },
+    especificaciones: {
+      tamaño_pulgadas: 29,
+      resolucion: "2560x1080",
+    },
+  },
+]);
+
+use("techstore");
+
+// Mostrar todos los productos
+db.productos.find();
+
+// Mostrar solo las Laptops
+db.productos.find({ tipo_producto: "Laptop" });
+
+// Mostrar productos con stock > 10 y precio < 1000
+db.productos.find({ stock: { $gt: 10 }, precio: { $lt: 1000 } });
+
+// Mostrar nombre, precio y stock de Smartphones
+db.productos.find({ tipo_producto: "Smartphone" }, { nombre: 1, precio: 1, stock: 1, _id: 0 });
+
+// Reducir stock del Smartphone (venta)
+db.productos.updateOne({ sku: "SM-A55-128GB" }, { $inc: { stock: -1 } });
+
+// Subir precio Laptop y agregar campo ultima_revision
+db.productos.updateOne({ sku: "LAP-THINKX1" }, { $set: { precio: 1300, ultima_revision: new Date() } });
