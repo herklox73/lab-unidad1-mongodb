@@ -80,7 +80,7 @@ El siguiente diagrama representa cómo se vería el caso "TechStore" en un model
 
 ## Parte 3. Diseño del Modelo NoSQL (MongoDB)
 
-![Informe](informe.png)
+![Informe](imagenes/informe.png)
 
 A continuación, se presenta la estructura del documento JSON para la colección `productos` en MongoDB.
 Incluye ejemplos de un **Smartphone** y una **Laptop** para mostrar la flexibilidad del esquema.
@@ -146,5 +146,89 @@ db.createCollection("productos", {
 
 ## Parte 1 :
 
-Cree el archivo operaciones.mongodb.
-![operaciones](operaciones.png)
+![operaciones](imagenes/operaciones.png)
+● Cree el archivo operaciones.mongodb.
+● Añada los comandos para conectarse a su base de datos (Atlas o local) y seleccionar la base de datos
+techstore.
+![conexion](imagenes/conexion.png)
+● Añada un comando para borrar la colección productos al inicio, para asegurar que el script sea
+re-ejecutable.
+![borrar](imagenes/borrar.png)
+**Parte 2: Inserción de Datos (Create):**
+Añada un comando db.productos.insertMany() para insertar 3 productos en la colección, siguiendo el
+diseño de la Fase 1:
+● Un (1) Smartphone.
+● Una (1) Laptop.
+● Un (1) Monitor.
+```json
+// Insertar: productos
+db.productos.insertMany([
+{
+nombre: "Laptop Lenovo ThinkPad X1",
+sku: "LAP-THINKX1",
+precio: 1200,
+stock: 8,
+tipo_producto: "Laptop",
+fecha_creacion: new Date(),
+categoria: { nombre_categoria: "Computadoras" },
+proveedor: {
+nombre_proveedor: "Tech Supplier S.A.",
+telefono: "0999999999",
+email: "ventas@techsupplier.com",
+direccion: "Av. Central 123, Quito",
+},
+especificaciones: {
+cpu: "Intel Core i7",
+ram_gb: 16,
+alto_cm: 2.5,
+ancho_cm: 35,
+peso_kg: 1.8,
+},
+},
+{
+nombre: "Smartphone Galaxy A55",
+sku: "SM-A55-128GB",
+precio: 650,
+stock: 15,
+tipo_producto: "Smartphone",
+fecha_creacion: new Date(),
+categoria: { nombre_categoria: "Celulares" },
+proveedor: {
+nombre_proveedor: "MobileCorp",
+telefono: "0987654321",
+email: "contacto@mobilecorp.com",
+direccion: "Av. Las Américas, Guayaquil",
+},
+especificaciones: {
+pantalla: '6.5"',
+ram_gb: 8,
+},
+},
+{
+nombre: "Monitor LG UltraWide 29”",
+sku: "MON-LG29UW",
+precio: 350,
+stock: 20,
+tipo_producto: "Monitor",
+fecha_creacion: new Date(),
+categoria: { nombre_categoria: "Monitores" },
+proveedor: {
+nombre_proveedor: "Displays Ecuador",
+telefono: "0977777777",
+email: "ventas@displays.ec",
+direccion: "Calle Norte 456, Santo Domingo",
+},
+especificaciones: {
+tamaño_pulgadas: 29,
+resolucion: "2560x1080",
+},
+},
+]);
+**Parte 3: Lectura de Datos (Read):**
+● Añada comentarios claros (//) separando cada consulta.
+● Consulta 1: Mostrar todos los productos en la colección. (find())
+![todos](imagenes/todos.png)
+![completos](imagenes/completos.png)
+● Consulta 2: Mostrar solo los productos que sean de tipo "Laptop".
+![laptop](imagenes/laptop.png)
+![solo laptop](imagenes/laptopdatos.png)
