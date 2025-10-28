@@ -262,7 +262,7 @@ db.productos.insertMany([
 
 ![Stock mayor a 10](imagenes/stock.png)
 
-![Productos con stock mayor a 10](imagenes/stock10.png)
+![Productos con stock mayor a 10](imagenes/stok10.png)
 
 **● Consulta 4: Mostrar solo el nombre, precio y stock de los "Smartphone" (Proyección).**
 
