@@ -21,7 +21,7 @@
 
 ---
 
-## Introducción
+## 1. Introducción
 
 En el desarrollo de software moderno, la elección de la base de datos es una decisión de arquitectura fundamental.
 Mientras que los modelos relacionales (SQL) ofrecen una gran consistencia y estructura, los modelos **NoSQL** han surgido para manejar volúmenes masivos de datos con esquemas flexibles y escalabilidad horizontal.
@@ -30,7 +30,7 @@ Este laboratorio tiene como objetivo aplicar los fundamentos teóricos de las ba
 
 ---
 
-## Objetivos
+## 2. Objetivos
 
 - Analizar un caso de estudio y justificar la elección de una base de datos NoSQL (MongoDB) frente a una solución SQL.
 - Diseñar un modelo de datos conceptual (esquema JSON) para una colección en MongoDB, aplicando características como el anidamiento de documentos.
@@ -38,6 +38,24 @@ Este laboratorio tiene como objetivo aplicar los fundamentos teóricos de las ba
 - Ejecutar operaciones fundamentales de tratamiento de datos (**Inserción**, **Lectura** y **Actualización**) utilizando la sintaxis de **mongosh** en archivos `.mongodb`.
 
 ---
+
+## 3. MARCO TEÓRICO:
+
+Una base de datos NoSQL (Not Only SQL) es un modelo de almacenamiento no relacional que permite manejar
+información con estructuras dinámicas. Entre sus tipos más comunes se encuentran las bases de documentos,
+clave-valor, grafos y columnas.
+MongoDB es un sistema NoSQL orientado a documentos que utiliza el formato BSON, una representación binaria
+de JSON. Cada documento contiene pares clave-valor, lo que permite almacenar datos jerárquicos, listas y
+subdocumentos sin necesidad de múltiples tablas o relaciones.
+El uso de esquemas JSON (JSON Schema) en MongoDB permite establecer validaciones para garantizar la
+integridad de los datos, definiendo campos obligatorios, tipos de datos y restricciones.
+Este enfoque combina la flexibilidad del modelo NoSQL con cierto control estructural propio del modelo relacional.
+
+## 4. DESCRIPCIÓN DEL PROCEDIMIENTO:
+
+**PARTE 1: Actividades por Desarrollar**
+En su archivo INFORME_TECNICO.md, cree una tabla comparativa donde justifique la elección de MongoDB
+para el caso "TechStore"
 
 ## 1. Análisis Comparativo (SQL vs NoSQL)
 
@@ -50,7 +68,7 @@ Este laboratorio tiene como objetivo aplicar los fundamentos teóricos de las ba
 | **Integridad de Datos**     | Alta, gracias a las claves foráneas y restricciones de integridad.                                                                                   | Requiere validadores (`$jsonSchema`) y control en la aplicación.                                            | Aunque el modelo NoSQL es más flexible, MongoDB permite establecer validaciones que aseguran la consistencia básica sin perder agilidad.                                                       |
 |                             |
 
-## 2. Diseño del Modelo Relacional
+## Parte 2. Diseño del Modelo Relacional
 
 El siguiente diagrama representa cómo se vería el caso "TechStore" en un modelo relacional tradicional (SQL):
 
@@ -60,7 +78,9 @@ El siguiente diagrama representa cómo se vería el caso "TechStore" en un model
 
 ---
 
-## 3. Diseño del Modelo NoSQL (MongoDB)
+## Parte 3. Diseño del Modelo NoSQL (MongoDB)
+
+![Informe](informe.png)
 
 A continuación, se presenta la estructura del documento JSON para la colección `productos` en MongoDB.
 Incluye ejemplos de un **Smartphone** y una **Laptop** para mostrar la flexibilidad del esquema.
